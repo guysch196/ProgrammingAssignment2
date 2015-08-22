@@ -3,6 +3,8 @@
 ## The first function creates a special "matrix" object that can catche its inverse. 
 ## This object is actually a list of 4 functions - (1) set and (2) get the matrix, 
 ## and (3) set and (4) get its inverse matrix
+## The function is similar to the one presented in the example, only instead of a vector, 
+## x is defined as a matrix
 
 makeCacheMatrix <- function(x = matrix()) {
         mat <- NULL
@@ -27,10 +29,12 @@ makeCacheMatrix <- function(x = matrix()) {
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
         mat <- x$getinverse()
+        ## condition for checking whether the inverse matrix already exists
         if(!is.null(mat)) {
                 message("getting cached data")
                 return(mat)
         }
+        ## getting the matrix and then applying the functions to get the inverse one
         data <- x$get()
         mat <- solve(data, ...)
         x$setinverse(mat)
